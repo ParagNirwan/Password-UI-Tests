@@ -2,7 +2,7 @@ function PasswordField() {
   return (
     <div className="container">
       <br />
-      <h2 className="text-center">Difficulty Level</h2>
+      <h2 className="text-center">Password Complexity {"Easy"}</h2>
       <br />
       <div className="card">
         <div className="card-header bg-info-subtle">Password Field #</div>
