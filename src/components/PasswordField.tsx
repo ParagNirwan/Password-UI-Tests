@@ -1,5 +1,5 @@
 function PasswordField() {
-  const handlePaste = (e) => {
+  const handlePaste = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
   };
 
