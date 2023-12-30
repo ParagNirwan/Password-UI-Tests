@@ -11,18 +11,30 @@ function PasswordField() {
         <div className="card-body">
           {/* <h5 className="card-title">Special title treatment</h5> */}
           <p className="card-text">
-            Please Enter the following text in the password field below
-            "Password"
+            Please enter the following text in the password field below
+            {"Password"}
           </p>
           <div>
-            <label htmlFor="pw1" className="form-label">
-              Password*
+            <label htmlFor="email" className="form-label required">
+              Email
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              value={"someone@something.com"}
+              readOnly
+            />
+            <br />
+            <label htmlFor="pw1" className="form-label required">
+              Password
             </label>
             <input
               type="password"
               className="form-control"
               id="pw1"
               placeholder="Password"
+              required
             />
           </div>
 
@@ -38,21 +50,32 @@ function PasswordField() {
         <div className="card-body">
           {/* <h5 className="card-title">Special title treatment</h5> */}
           <p className="card-text">
-            Please Enter the following text in the password field below
-            "Password"
+            Please enter the following text in the password field below
+            {"Password"}
           </p>
+          <label htmlFor="email" className="form-label required">
+            Email
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            id="email"
+            value={"someone@something.com"}
+            readOnly
+          />
+          <br />
           <div>
-            <label htmlFor="pw1" className="form-label">
-              Password*
+            <label htmlFor="pw2" className="form-label required">
+              Password
             </label>
             <input
               type="password"
               className="form-control"
-              id="pw1"
+              id="pw2"
               placeholder="Password"
+              required
             />
           </div>
-
           {/* <a href="#" className="btn btn-primary">
             Check
           </a> */}

@@ -31,6 +31,10 @@ function Rules({ onBeginTesting }: RulesProps) {
       content:
         "You are permitted to attempt entering the password multiple times. However, please refrain from refreshing the page once the tests begin to maintain the continuity of the evaluation process.",
     },
+    {
+      title: "Integrity Constraints",
+      content: "For the Integrity of tests, copying text is disabled.",
+    },
   ];
 
   let [beginTest] = useState(false);
