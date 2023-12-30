@@ -33,7 +33,8 @@ function Rules({ onBeginTesting }: RulesProps) {
     },
     {
       title: "Integrity Constraints",
-      content: "For the Integrity of tests, copying text is disabled.",
+      content:
+        "For the Integrity of tests, copying and pasting text is disabled.",
     },
   ];
 

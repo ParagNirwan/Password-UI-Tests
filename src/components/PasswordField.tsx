@@ -1,4 +1,8 @@
 function PasswordField() {
+  const handlePaste = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="container">
       <br />
@@ -35,6 +39,7 @@ function PasswordField() {
               id="pw1"
               placeholder="Password"
               required
+              onPaste={handlePaste}
             />
           </div>
 
@@ -46,7 +51,9 @@ function PasswordField() {
       <br />
 
       <div className="card">
-        <div className="card-header bg-info-subtle">Password Field #</div>
+        <div className="card-header bg-info-subtle">
+          Password Field #{"number"}
+        </div>
         <div className="card-body">
           {/* <h5 className="card-title">Special title treatment</h5> */}
           <p className="card-text">
@@ -74,6 +81,7 @@ function PasswordField() {
               id="pw2"
               placeholder="Password"
               required
+              onPaste={handlePaste}
             />
           </div>
           {/* <a href="#" className="btn btn-primary">
