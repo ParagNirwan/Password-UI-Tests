@@ -5,7 +5,9 @@ function PasswordField() {
       <h2 className="text-center">Password Complexity {"Easy"}</h2>
       <br />
       <div className="card">
-        <div className="card-header bg-info-subtle">Password Field #</div>
+        <div className="card-header bg-info-subtle">
+          Password Field #{"number"}
+        </div>
         <div className="card-body">
           {/* <h5 className="card-title">Special title treatment</h5> */}
           <p className="card-text">
@@ -17,7 +19,7 @@ function PasswordField() {
               Password*
             </label>
             <input
-              type="email"
+              type="password"
               className="form-control"
               id="pw1"
               placeholder="Password"
@@ -44,7 +46,7 @@ function PasswordField() {
               Password*
             </label>
             <input
-              type="email"
+              type="password"
               className="form-control"
               id="pw1"
               placeholder="Password"
