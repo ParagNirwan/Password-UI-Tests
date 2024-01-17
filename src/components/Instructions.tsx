@@ -43,8 +43,6 @@ function Rules({ onBeginTesting }: RulesProps) {
     },
   ];
 
-  let [beginTest] = useState(false);
-
   return (
     <div className="container">
       <br />
