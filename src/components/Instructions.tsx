@@ -36,6 +36,11 @@ function Rules({ onBeginTesting }: RulesProps) {
       content:
         "For the Integrity of tests, copying and pasting text is disabled.",
     },
+    {
+      title: "Filled up Fields",
+      content:
+        "We have already filled up the email and password fields for you, you just have to correct the passwords*. Passwords have wrong character(s) in between them you just have to correct the character(s)",
+    },
   ];
 
   let [beginTest] = useState(false);

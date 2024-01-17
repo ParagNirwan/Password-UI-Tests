@@ -1,4 +1,4 @@
-function ProgressBar() {
+function ProgressBar({ progress }) {
   return (
     <div className="container">
       <br />
@@ -6,13 +6,15 @@ function ProgressBar() {
         className="progress"
         role="progressbar"
         aria-label="Example 20px high"
-        style={{ height: "25px" }}
+        style={{ height: "18px" }}
       >
         <div
-          className="progress-bar bg-success overflow-visible text-light"
-          style={{ width: "50%" }}
+          className="progress-bar progress-bar-striped progress-bar-animated bg-success overflow-visible text-light"
+          style={{
+            width: `${progress}%`,
+          }}
         >
-          Progress {50}%
+          Completed {progress}%
         </div>
       </div>
     </div>
