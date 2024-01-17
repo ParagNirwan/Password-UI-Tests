@@ -1,24 +1,6 @@
-import { useState, ChangeEvent } from "react";
+import { useState } from "react";
 import ProgressBar from "./ProgressBar";
 import "./PasswordField.css";
-interface SavedState {
-  dc1: number;
-  dc2: number;
-  dc3: number;
-  dc4: number;
-  dc5: number;
-  dc6: number;
-}
-
-interface SamplePasswords {
-  1: string;
-  2: string;
-  3: string;
-  4: string;
-  5: string;
-  6: string;
-}
-
 function PasswordField() {
   const [pw1, setPw1] = useState("");
   const [pw2, setPw2] = useState("");
@@ -28,7 +10,7 @@ function PasswordField() {
   const [bottomFieldNumber, setBottomFieldNumber] = useState(2);
   const [progress, setProgress] = useState(5);
   const [complexity, setComplexity] = useState("Easy");
-  const [saved, setSaved] = useState<SavedState>({
+  const [saved, setSaved] = useState({
     dc1: 0,
     dc2: 0,
     dc3: 0,
@@ -37,30 +19,20 @@ function PasswordField() {
     dc6: 0,
   });
 
-  const samplePasswords: SamplePasswords = {
+  const samplePasswords: { [key: number]: string } = {
     1: "EasyPassword123",
-    2: "EasyPassword123",
+    2: "Welcome2022",
     3: "M3d!umStr0ng#",
-    4: "M3d!umStr0ng#",
+    4: "SecurePass123!",
     5: "H@rdP@ssw0rd$123",
-    6: "H@rdP@ssw0rd$123",
+    6: "C0mpl3xP@$$w0rD#2024",
   };
 
-  const [displayedCharacters, setDisplayedCharacters] = useState("");
-
-  const clearDisplayedCharacters = () => {
-    setDisplayedCharacters("");
+  const handlePaste = (e) => {
+    e.preventDefault();
   };
 
-  const handlePaste = (/*e*/) => {
-    // e.preventDefault();
-  };
-
-  const handlePasswordChange = (
-    event: ChangeEvent<HTMLInputElement>,
-    setPassword: React.Dispatch<React.SetStateAction<string>>,
-    deletionCountState: React.Dispatch<React.SetStateAction<number>>
-  ) => {
+  const handlePasswordChange = (event, setPassword, deletionCountState) => {
     const currentValue = event.target.value;
     const previousValue = setPassword === setPw1 ? pw1 : pw2;
 
@@ -70,51 +42,6 @@ function PasswordField() {
     }
 
     setPassword(currentValue);
-
-    if (setPassword === setPw2) {
-      const cursorPosition = event.target.selectionStart;
-      let start, end;
-
-      if (cursorPosition === 0) {
-        start = 0;
-        end = Math.min(currentValue.length, cursorPosition + 2);
-      } else if (cursorPosition === currentValue.length) {
-        start = Math.max(0, cursorPosition - 2);
-        end = currentValue.length;
-      } else {
-        start = Math.max(0, cursorPosition - 1);
-        end = Math.min(currentValue.length, cursorPosition + 1);
-      }
-
-      const charactersAroundCursor = currentValue.substring(start, end);
-
-      setDisplayedCharacters(charactersAroundCursor);
-      setTimeout(clearDisplayedCharacters, 3000);
-    }
-  };
-
-  const handleCursorMove = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.target.id === "pw2") {
-      const cursorPosition = event.target.selectionStart;
-      const currentValue = event.target.value;
-      let start, end;
-
-      if (cursorPosition === 0) {
-        start = 0;
-        end = Math.min(currentValue.length, cursorPosition + 2);
-      } else if (cursorPosition === currentValue.length) {
-        start = Math.max(0, cursorPosition - 2);
-        end = currentValue.length;
-      } else {
-        start = Math.max(0, cursorPosition - 1);
-        end = Math.min(currentValue.length, cursorPosition + 1);
-      }
-
-      const charactersAroundCursor = currentValue.substring(start, end);
-
-      setDisplayedCharacters(charactersAroundCursor);
-      setTimeout(clearDisplayedCharacters, 2000);
-    }
   };
 
   const handleNextClick = () => {
@@ -128,6 +55,7 @@ function PasswordField() {
         dc1: totalDeletionCount1,
         dc2: totalDeletionCount2,
       });
+      console.log(saved);
       setTotalDeletionCount1(0);
       setTotalDeletionCount2(0);
     } else if (complexity === "Medium") {
@@ -140,6 +68,7 @@ function PasswordField() {
         dc3: totalDeletionCount1,
         dc4: totalDeletionCount2,
       });
+      console.log(saved);
       setTotalDeletionCount1(0);
       setTotalDeletionCount2(0);
     } else {
@@ -148,6 +77,7 @@ function PasswordField() {
         dc5: totalDeletionCount1,
         dc6: totalDeletionCount2,
       });
+      console.log(saved);
     }
   };
 
@@ -226,11 +156,7 @@ function PasswordField() {
               <label htmlFor="pw2" className="form-label required">
                 Password
               </label>
-              <div className="my-div">
-                {displayedCharacters && (
-                  <p className="text-center">{displayedCharacters}</p>
-                )}
-              </div>
+              <div className="my-div"></div>
               <input
                 type="password"
                 className="form-control"
@@ -242,8 +168,6 @@ function PasswordField() {
                 onChange={(e) =>
                   handlePasswordChange(e, setPw2, setTotalDeletionCount2)
                 }
-                onKeyDown={handleCursorMove} // For arrow key events
-                onTouchMove={handleCursorMove} // For touch events
               />
             </div>
           </div>
@@ -257,6 +181,7 @@ function PasswordField() {
         </div>
         <br />
 
+        {/*This Code is for testing. remove this from production build*/}
         <div
           style={{
             backgroundColor: "gray",
@@ -265,12 +190,14 @@ function PasswordField() {
           }}
         >
           <p className="text-center">
+            {" "}
             For Testing purpose only | Total Deletion Count For Field &nbsp;
             {topFieldNumber} = {totalDeletionCount1}
             &nbsp; &nbsp; Total Deletion Count For Field {bottomFieldNumber} =
             {totalDeletionCount2}
           </p>
         </div>
+        {/*This Code is for testing. remove this from production build*/}
       </div>
     </>
   );
