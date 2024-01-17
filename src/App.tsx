@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import PasswordField from "./components/PasswordField";
 import Rules from "./components/Instructions";
 import Footer from "./components/Footer";
+import TextMagnifier from "./components/TextMagnifier";
 
 function App() {
   // State variable to track whether testing has begun
@@ -18,6 +19,7 @@ function App() {
       <Navbar />
       {!testingStarted && <Rules onBeginTesting={handleBeginTesting} />}
       {testingStarted && <PasswordField />}
+      <TextMagnifier initialText={"Parag"}></TextMagnifier>
       <Footer></Footer>
       {/* <End></End> */}
     </div>

@@ -44,7 +44,6 @@ function Rules({ onBeginTesting }: RulesProps) {
   ];
 
   let [beginTest] = useState(false);
-  console.log(beginTest);
 
   return (
     <div className="container">
@@ -57,7 +56,7 @@ function Rules({ onBeginTesting }: RulesProps) {
           <h5 className="card-title">
             Write Something here or comment it out later
           </h5>
-          <p className="card-text">
+          <span className="card-text">
             <ul>
               {instructions.map((instruction, index) => (
                 <li key={index}>
@@ -65,7 +64,7 @@ function Rules({ onBeginTesting }: RulesProps) {
                 </li>
               ))}
             </ul>
-          </p>
+          </span>
           <div className="text-center">
             <button className="btn btn-primary" onClick={onBeginTesting}>
               Begin Testing

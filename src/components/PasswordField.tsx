@@ -153,13 +153,13 @@ function PasswordField() {
               without the double quotes &nbsp; "
               {samplePasswords[bottomFieldNumber]}"
             </p>
-            <label htmlFor="email" className="form-label required">
+            <label htmlFor="email2" className="form-label required">
               Email
             </label>
             <input
               type="email"
               className="form-control"
-              id="email"
+              id="email2"
               value={"someone@something.com"}
               readOnly
             />
