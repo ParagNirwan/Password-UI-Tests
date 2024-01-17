@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, SetStateAction, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import "./PasswordField.css";
 function PasswordField() {
@@ -28,11 +28,23 @@ function PasswordField() {
     6: "C0mpl3xP@$$w0rD#2024",
   };
 
-  const handlePaste = (e) => {
+  const handlePaste = (e: { preventDefault: () => void }) => {
     e.preventDefault();
   };
 
-  const handlePasswordChange = (event, setPassword, deletionCountState) => {
+  const handlePasswordChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    setPassword: {
+      (value: SetStateAction<string>): void;
+      (value: SetStateAction<string>): void;
+      (value: SetStateAction<string>): void;
+    },
+    deletionCountState: {
+      (value: SetStateAction<number>): void;
+      (value: SetStateAction<number>): void;
+      (arg0: (prevCount: any) => any): void;
+    }
+  ) => {
     const currentValue = event.target.value;
     const previousValue = setPassword === setPw1 ? pw1 : pw2;
 
