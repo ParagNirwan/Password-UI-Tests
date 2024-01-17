@@ -1,6 +1,23 @@
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import ProgressBar from "./ProgressBar";
 import "./PasswordField.css";
+interface SavedState {
+  dc1: number;
+  dc2: number;
+  dc3: number;
+  dc4: number;
+  dc5: number;
+  dc6: number;
+}
+
+interface SamplePasswords {
+  1: string;
+  2: string;
+  3: string;
+  4: string;
+  5: string;
+  6: string;
+}
 
 function PasswordField() {
   const [pw1, setPw1] = useState("");
@@ -11,7 +28,7 @@ function PasswordField() {
   const [bottomFieldNumber, setBottomFieldNumber] = useState(2);
   const [progress, setProgress] = useState(5);
   const [complexity, setComplexity] = useState("Easy");
-  const [saved, setSaved] = useState({
+  const [saved, setSaved] = useState<SavedState>({
     dc1: 0,
     dc2: 0,
     dc3: 0,
@@ -20,7 +37,7 @@ function PasswordField() {
     dc6: 0,
   });
 
-  const samplePasswords = {
+  const samplePasswords: SamplePasswords = {
     1: "EasyPassword123",
     2: "EasyPassword123",
     3: "M3d!umStr0ng#",
@@ -35,11 +52,15 @@ function PasswordField() {
     setDisplayedCharacters("");
   };
 
-  const handlePaste = (e) => {
-    e.preventDefault();
+  const handlePaste = (/*e*/) => {
+    // e.preventDefault();
   };
 
-  const handlePasswordChange = (event, setPassword, deletionCountState) => {
+  const handlePasswordChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    setPassword: React.Dispatch<React.SetStateAction<string>>,
+    deletionCountState: React.Dispatch<React.SetStateAction<number>>
+  ) => {
     const currentValue = event.target.value;
     const previousValue = setPassword === setPw1 ? pw1 : pw2;
 
@@ -72,7 +93,7 @@ function PasswordField() {
     }
   };
 
-  const handleCursorMove = (event) => {
+  const handleCursorMove = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.target.id === "pw2") {
       const cursorPosition = event.target.selectionStart;
       const currentValue = event.target.value;
