@@ -1,4 +1,7 @@
-function ProgressBar({ progress }) {
+interface ProgressBarProps {
+  progress: number;
+}
+function ProgressBar({ progress }: ProgressBarProps) {
   return (
     <div className="container">
       <br />
