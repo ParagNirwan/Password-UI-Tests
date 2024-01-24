@@ -170,7 +170,7 @@ function PasswordField() {
               </label>
               <div className="my-div"></div>
               <input
-                type="password"
+                type="text"
                 className="form-control"
                 id="pw2"
                 placeholder="Password"
