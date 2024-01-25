@@ -30,9 +30,9 @@ function PasswordField() {
   const [cursorPosition, setCursorPosition] = useState(0);
   const handleCursorPositionChange = () => {
     setTimeout(() => {
-      const pw2Input = document.getElementById("pw2");
+      const pw2Input = document.getElementById("pw2") as HTMLInputElement;
       if (pw2Input) {
-        const newPosition = pw2Input.selectionStart;
+        const newPosition = pw2Input.selectionStart ?? 0;
         setCursorPosition(newPosition);
       }
     }, 0);
