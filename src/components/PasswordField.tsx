@@ -27,12 +27,46 @@ function PasswordField() {
     5: "H@rdP@ssw0rd$123",
     6: "C0mpl3xP@$$w0rD#2024",
   };
+  const [cursorPosition, setCursorPosition] = useState(0);
+  const handleCursorPositionChange = () => {
+    setTimeout(() => {
+      const pw2Input = document.getElementById("pw2");
+      if (pw2Input) {
+        const newPosition = pw2Input.selectionStart;
+        setCursorPosition(newPosition);
+      }
+    }, 0);
+  };
 
   const handlePaste = (e: { preventDefault: () => void }) => {
     e.preventDefault();
   };
 
   const handlePasswordChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    setPassword: {
+      (value: SetStateAction<string>): void;
+      (value: SetStateAction<string>): void;
+      (value: SetStateAction<string>): void;
+    },
+    deletionCountState: {
+      (value: SetStateAction<number>): void;
+      (value: SetStateAction<number>): void;
+      (arg0: (prevCount: any) => any): void;
+    }
+  ) => {
+    const currentValue = event.target.value;
+    const previousValue = setPassword === setPw1 ? pw1 : pw2;
+
+    if (previousValue.length > currentValue.length) {
+      const deletedCharacters = previousValue.length - currentValue.length;
+      deletionCountState((prevCount) => prevCount + deletedCharacters);
+    }
+
+    setPassword(currentValue);
+  };
+
+  const handlePasswordChange2 = (
     event: ChangeEvent<HTMLInputElement>,
     setPassword: {
       (value: SetStateAction<string>): void;
@@ -168,7 +202,6 @@ function PasswordField() {
               <label htmlFor="pw2" className="form-label required">
                 Password
               </label>
-              <div className="my-div"></div>
               <input
                 type="text"
                 className="form-control"
@@ -178,8 +211,9 @@ function PasswordField() {
                 onPaste={handlePaste}
                 value={pw2}
                 onChange={(e) =>
-                  handlePasswordChange(e, setPw2, setTotalDeletionCount2)
+                  handlePasswordChange2(e, setPw2, setTotalDeletionCount2)
                 }
+                onSelect={handleCursorPositionChange} // Add this line
               />
             </div>
           </div>
@@ -192,7 +226,7 @@ function PasswordField() {
           </a>
         </div>
         <br />
-
+        {cursorPosition}
         {/*This Code is for testing. remove this from production build*/}
         <div
           style={{

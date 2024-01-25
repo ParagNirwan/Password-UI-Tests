@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <script>
+      function logCursorPosition(el) {
+        var position = el.selectionStart;
+        console.log("Cursor Position: " + position);
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var inputElement = document.getElementById("t1");
+
+        // Attach the event listeners to the input field
+        inputElement.addEventListener("input", function () {
+          logCursorPosition(inputElement);
+        });
+
+        // For touch devices, use the touchend event
+        inputElement.addEventListener("touchend", function () {
+          logCursorPosition(inputElement);
+        });
+
+        // For arrow key movements
+        inputElement.addEventListener("keydown", function () {
+          // Use a small delay to wait for the cursor position to update
+          setTimeout(function () {
+            logCursorPosition(inputElement);
+          }, 0);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input type="text" id="t1" value="" oninput="logCursorPosition(this)" />
+  </body>
+</html>
