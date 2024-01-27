@@ -1,35 +1,33 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <script>
-      function logCursorPosition(el) {
-        var position = el.selectionStart;
-        console.log("Cursor Position: " + position);
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delayed Masking</title>
+    <style>
+      .masked-text {
       }
 
-      document.addEventListener("DOMContentLoaded", function () {
-        var inputElement = document.getElementById("t1");
-
-        // Attach the event listeners to the input field
-        inputElement.addEventListener("input", function () {
-          logCursorPosition(inputElement);
-        });
-
-        // For touch devices, use the touchend event
-        inputElement.addEventListener("touchend", function () {
-          logCursorPosition(inputElement);
-        });
-
-        // For arrow key movements
-        inputElement.addEventListener("keydown", function () {
-          // Use a small delay to wait for the cursor position to update
-          setTimeout(function () {
-            logCursorPosition(inputElement);
-          }, 0);
-        });
-      });
-    </script>
+      .masked-text.hide {
+        -webkit-text-security: disc; /* Use disc for masking characters */
+        text-security: disc;
+      }
+    </style>
   </head>
   <body>
-    <input type="text" id="t1" value="" oninput="logCursorPosition(this)" />
+    <label for="textInput">Enter Text:</label>
+    <input type="text" id="textInput" oninput="delayedMask(this.value)" />
+
+    <script>
+      function delayedMask(value) {
+        // Wait for 2 seconds before applying the mask
+        setTimeout(function () {
+          document.getElementById("textInput").value = value; // Set the original value back
+
+          // Add the 'hide' class to apply the masking
+          document.getElementById("textInput").classList.add("hide");
+        }, 2000);
+      }
+    </script>
   </body>
 </html>

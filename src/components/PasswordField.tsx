@@ -36,6 +36,7 @@ function PasswordField() {
         setCursorPosition(newPosition);
       }
     }, 0);
+    console.log(newValue);
   };
 
   const handlePaste = (e: { preventDefault: () => void }) => {
@@ -65,7 +66,7 @@ function PasswordField() {
 
     setPassword(currentValue);
   };
-
+  const [newValue, setNewValue] = useState("");
   const handlePasswordChange2 = (
     event: ChangeEvent<HTMLInputElement>,
     setPassword: {
@@ -86,7 +87,8 @@ function PasswordField() {
       const deletedCharacters = previousValue.length - currentValue.length;
       deletionCountState((prevCount) => prevCount + deletedCharacters);
     }
-
+    setNewValue(currentValue);
+    // console.log(newValue);
     setPassword(currentValue);
   };
 
@@ -204,7 +206,7 @@ function PasswordField() {
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control masked-password"
                 id="pw2"
                 placeholder="Password"
                 required

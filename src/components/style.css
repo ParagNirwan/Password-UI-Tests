@@ -1,0 +1,12 @@
+input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 100px;
+}
+
+#masked-character {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+}

@@ -18,6 +18,7 @@ function App() {
       <Navbar />
       {!testingStarted && <Rules onBeginTesting={handleBeginTesting} />}
       {testingStarted && <PasswordField />}
+
       <Footer></Footer>
       {/* <End></End> */}
     </div>
