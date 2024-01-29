@@ -3,31 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Delayed Masking</title>
     <style>
-      .masked-text {
+      /* Style for the visible character */
+      .visible-char {
+        display: inline-block;
+        width: 1ch; /* Adjust as needed */
       }
-
-      .masked-text.hide {
-        -webkit-text-security: disc; /* Use disc for masking characters */
-        text-security: disc;
+      /* Style for the hidden characters */
+      .hidden-chars {
+        display: inline-block;
+        width: 1ch; /* Adjust as needed */
+        color: transparent;
       }
     </style>
   </head>
   <body>
-    <label for="textInput">Enter Text:</label>
-    <input type="text" id="textInput" oninput="delayedMask(this.value)" />
+    <input type="password" id="passwordInput" />
 
     <script>
-      function delayedMask(value) {
-        // Wait for 2 seconds before applying the mask
-        setTimeout(function () {
-          document.getElementById("textInput").value = value; // Set the original value back
+      // Function to update the password input display
+      function updatePasswordDisplay() {
+        const passwordInput = document.getElementById("passwordInput");
+        const password = passwordInput.value;
 
-          // Add the 'hide' class to apply the masking
-          document.getElementById("textInput").classList.add("hide");
-        }, 2000);
+        // Display the second character as visible, hide the rest
+        const visiblePart = password.charAt(1);
+        const hiddenPart = "*".repeat(password.length - 2);
+
+        // Set the input value with visible and hidden parts
+        passwordInput.value = visiblePart + hiddenPart;
       }
+
+      // Attach the function to the input event
+      document
+        .getElementById("passwordInput")
+        .addEventListener("input", updatePasswordDisplay);
     </script>
   </body>
 </html>

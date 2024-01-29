@@ -202,8 +202,11 @@ function PasswordField() {
             <br />
             <div>
               <label htmlFor="pw2" className="form-label required">
-                Password
+                Password{" "}
               </label>
+              <div className="topClass">
+                {pw2.charAt(cursorPosition - 1)}|{pw2.charAt(cursorPosition)}
+              </div>
               <input
                 type="text"
                 className="form-control masked-password"
