@@ -204,22 +204,28 @@ function PasswordField() {
               <label htmlFor="pw2" className="form-label required">
                 Password{" "}
               </label>
-              <div className="topClass">
+              {/* <div className="topClass">
                 {pw2.charAt(cursorPosition - 1)}|{pw2.charAt(cursorPosition)}
+              </div> */}
+              <div className="input-group mb-3">
+                <input
+                  type="text"
+                  className="form-control masked-password"
+                  id="pw2"
+                  placeholder="Password"
+                  required
+                  onPaste={handlePaste}
+                  value={pw2}
+                  onChange={(e) =>
+                    handlePasswordChange2(e, setPw2, setTotalDeletionCount2)
+                  }
+                  onSelect={handleCursorPositionChange}
+                  title={`${pw2.charAt(cursorPosition)}`}
+                />{" "}
+                <span className="input-group-text">
+                  {pw2.charAt(cursorPosition)}
+                </span>
               </div>
-              <input
-                type="text"
-                className="form-control masked-password"
-                id="pw2"
-                placeholder="Password"
-                required
-                onPaste={handlePaste}
-                value={pw2}
-                onChange={(e) =>
-                  handlePasswordChange2(e, setPw2, setTotalDeletionCount2)
-                }
-                onSelect={handleCursorPositionChange} // Add this line
-              />
             </div>
           </div>
         </div>
@@ -231,7 +237,7 @@ function PasswordField() {
           </a>
         </div>
         <br />
-        {cursorPosition}
+
         {/*This Code is for testing. remove this from production build*/}
         <div
           style={{

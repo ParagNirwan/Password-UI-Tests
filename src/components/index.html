@@ -3,41 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masked Text Field</title>
     <style>
-      /* Style for the visible character */
-      .visible-char {
-        display: inline-block;
-        width: 1ch; /* Adjust as needed */
+      #maskedInput {
+        position: relative;
+        font-family: monospace; /* Ensure consistent character width */
       }
-      /* Style for the hidden characters */
-      .hidden-chars {
-        display: inline-block;
-        width: 1ch; /* Adjust as needed */
-        color: transparent;
+
+      #maskedInput:before {
+        content: attr(data-value); /* Display the original value */
+        position: absolute;
+        left: 0;
+        right: 0;
+        color: transparent; /* Make the original text invisible */
+      }
+
+      #maskedInput:after {
+        content: "•"; /* Display dots for masked characters */
+        position: absolute;
+        left: 2ch; /* Width of the first two characters */
+        right: 0;
+        color: black; /* Color of the dots */
       }
     </style>
   </head>
   <body>
-    <input type="password" id="passwordInput" />
+    <input type="text" id="maskedInput" data-value="" />
 
     <script>
-      // Function to update the password input display
-      function updatePasswordDisplay() {
-        const passwordInput = document.getElementById("passwordInput");
-        const password = passwordInput.value;
+      const maskedInput = document.getElementById("maskedInput");
 
-        // Display the second character as visible, hide the rest
-        const visiblePart = password.charAt(1);
-        const hiddenPart = "*".repeat(password.length - 2);
-
-        // Set the input value with visible and hidden parts
-        passwordInput.value = visiblePart + hiddenPart;
-      }
-
-      // Attach the function to the input event
-      document
-        .getElementById("passwordInput")
-        .addEventListener("input", updatePasswordDisplay);
+      // Listen for input changes
+      maskedInput.addEventListener("input", function () {
+        // Update the data-value attribute to store the original value
+        maskedInput.setAttribute("data-value", maskedInput.value);
+      });
     </script>
   </body>
 </html>
