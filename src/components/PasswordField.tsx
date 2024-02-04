@@ -19,6 +19,8 @@ function PasswordField() {
     dc6: 0,
   });
 
+  const [cursorVisible, setCursorVisible] = useState(false);
+
   const samplePasswords: { [key: number]: string } = {
     1: "EasyPassword123",
     2: "Welcome2022",
@@ -36,7 +38,12 @@ function PasswordField() {
         setCursorPosition(newPosition);
       }
     }, 0);
-    console.log(newValue);
+
+    // Show the span for 0.5 seconds
+    setCursorVisible(true);
+    setTimeout(() => {
+      setCursorVisible(false);
+    }, 500);
   };
 
   const handlePaste = (e: { preventDefault: () => void }) => {
@@ -222,9 +229,11 @@ function PasswordField() {
                   onSelect={handleCursorPositionChange}
                   title={`${pw2.charAt(cursorPosition)}`}
                 />{" "}
-                <span className="input-group-text">
-                  {pw2.charAt(cursorPosition)}
-                </span>
+                {cursorVisible && (
+                  <span className="input-group-text">
+                    {pw2.charAt(cursorPosition)}
+                  </span>
+                )}
               </div>
             </div>
           </div>
