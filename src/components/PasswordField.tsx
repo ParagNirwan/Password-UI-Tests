@@ -73,7 +73,7 @@ function PasswordField() {
 
     setPassword(currentValue);
   };
-  const [newValue, setNewValue] = useState("");
+  //const [newValue, setNewValue] = useState("");
   const handlePasswordChange2 = (
     event: ChangeEvent<HTMLInputElement>,
     setPassword: {
