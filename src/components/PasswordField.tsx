@@ -43,7 +43,7 @@ function PasswordField() {
     setCursorVisible(true);
     setTimeout(() => {
       setCursorVisible(false);
-    }, 500);
+    }, 750);
   };
 
   const handlePaste = (e: { preventDefault: () => void }) => {
@@ -216,7 +216,7 @@ function PasswordField() {
               </div> */}
               <div className="input-group mb-3">
                 <input
-                  type="text"
+                  type="password"
                   className="form-control masked-password"
                   id="pw2"
                   placeholder="Password"
@@ -227,13 +227,16 @@ function PasswordField() {
                     handlePasswordChange2(e, setPw2, setTotalDeletionCount2)
                   }
                   onSelect={handleCursorPositionChange}
-                  title={`${pw2.charAt(cursorPosition)}`}
+                  // title={`${pw2.charAt(cursorPosition)}`}
                 />{" "}
-                {cursorVisible && (
-                  <span className="input-group-text">
-                    {pw2.charAt(cursorPosition)}
-                  </span>
-                )}
+                <span className="input-group-text ">
+                  {cursorVisible && (
+                    <>
+                      {pw2.charAt(cursorPosition - 1)} <b>|</b>
+                      {pw2.charAt(cursorPosition)}
+                    </>
+                  )}
+                </span>
               </div>
             </div>
           </div>
