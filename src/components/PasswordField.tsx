@@ -73,7 +73,7 @@ function PasswordField() {
 
     setPassword(currentValue);
   };
-  //const [newValue, setNewValue] = useState("");
+  const [newValue, setNewValue] = useState("");
   const handlePasswordChange2 = (
     event: ChangeEvent<HTMLInputElement>,
     setPassword: {
@@ -95,7 +95,7 @@ function PasswordField() {
       deletionCountState((prevCount) => prevCount + deletedCharacters);
     }
     setNewValue(currentValue);
-    // console.log(newValue);
+    console.log(newValue);
     setPassword(currentValue);
   };
 
