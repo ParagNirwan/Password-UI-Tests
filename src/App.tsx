@@ -3,21 +3,36 @@ import Navbar from "./components/Navbar";
 import PasswordField from "./components/PasswordField";
 import Rules from "./components/Instructions";
 import Footer from "./components/Footer";
+import Questionnaire from "./components/Questionnaire";
+import End from "./components/End";
 
 function App() {
   // State variable to track whether testing has begun
   const [testingStarted, setTestingStarted] = useState(false);
-
+  const [testingEnded, setTestingEnded] = useState(false);
+  const [finish, setFinish] = useState(false);
   // Function to handle the start of testing
   const handleBeginTesting = () => {
     setTestingStarted(true);
+  };
+
+  const handleEndTesting = () => {
+    setTestingEnded(true);
+  };
+
+  const handleFinish = () => {
+    setFinish(true);
   };
 
   return (
     <div>
       <Navbar />
       {!testingStarted && <Rules onBeginTesting={handleBeginTesting} />}
-      {testingStarted && <PasswordField />}
+      {testingStarted && !testingEnded && (
+        <PasswordField onEndTesting={handleEndTesting} />
+      )}
+      {testingEnded && !finish && <Questionnaire onFinish={handleFinish} />}
+      {finish && <End />}
 
       <Footer></Footer>
       {/* <End></End> */}

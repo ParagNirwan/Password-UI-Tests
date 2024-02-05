@@ -1,7 +1,12 @@
 import { ChangeEvent, SetStateAction, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import "./PasswordField.css";
-function PasswordField() {
+
+interface RulesProps {
+  onEndTesting: () => void;
+}
+
+function PasswordField({ onEndTesting }: RulesProps) {
   const [pw1, setPw1] = useState("");
   const [pw2, setPw2] = useState("");
   const [totalDeletionCount1, setTotalDeletionCount1] = useState(0);
@@ -23,12 +28,22 @@ function PasswordField() {
 
   const samplePasswords: { [key: number]: string } = {
     1: "EasyPassword123",
-    2: "Welcome2022",
+    2: "EasyPassword123",
     3: "M3d!umStr0ng#",
-    4: "SecurePass123!",
-    5: "H@rdP@ssw0rd$123",
+    4: "M3d!umStr0ng#",
+    5: "C0mpl3xP@$$w0rD#2024",
     6: "C0mpl3xP@$$w0rD#2024",
   };
+
+  const wrongPasswords: { [key: number]: string } = {
+    1: "EasyPassword123",
+    2: "EasyPassword123",
+    3: "M3d!umStr0ng#",
+    4: "M3d!umStr0ng#",
+    5: "C0mpl3xP@$$w0rD#2024",
+    6: "C0mpl3xP@$$w0rD#2024",
+  };
+
   const [cursorPosition, setCursorPosition] = useState(0);
   const handleCursorPositionChange = () => {
     setTimeout(() => {
@@ -43,7 +58,7 @@ function PasswordField() {
     setCursorVisible(true);
     setTimeout(() => {
       setCursorVisible(false);
-    }, 750);
+    }, 1000);
   };
 
   const handlePaste = (e: { preventDefault: () => void }) => {
@@ -126,7 +141,8 @@ function PasswordField() {
       console.log(saved);
       setTotalDeletionCount1(0);
       setTotalDeletionCount2(0);
-    } else {
+    } else if (complexity === "Hard") {
+      onEndTesting();
       setSaved({
         ...saved,
         dc5: totalDeletionCount1,
@@ -146,13 +162,11 @@ function PasswordField() {
 
         <div className="card">
           <div className="card-header bg-info-subtle">
-            Password Field {topFieldNumber}
+            Password Field Variation 1
           </div>
           <div className="card-body">
             <p className="card-text">
-              Please enter the following text in the password field below
-              without the double quotes &nbsp; "
-              {samplePasswords[topFieldNumber]}"
+              Correct Password: "{samplePasswords[topFieldNumber]}"
             </p>
             <div>
               <label htmlFor="email" className="form-label required">
@@ -187,14 +201,12 @@ function PasswordField() {
         <br />
 
         <div className="card">
-          <div className="card-header bg-info-subtle">
-            Password Field {bottomFieldNumber}
+          <div className="card-header bg-purp-subtle">
+            Password Field Variation 2
           </div>
           <div className="card-body">
             <p className="card-text">
-              Please enter the following text in the password field below
-              without the double quotes &nbsp; "
-              {samplePasswords[bottomFieldNumber]}"
+              Correct Password: "{samplePasswords[topFieldNumber]}"
             </p>
             <label htmlFor="email2" className="form-label required">
               Email
@@ -229,14 +241,14 @@ function PasswordField() {
                   onSelect={handleCursorPositionChange}
                   // title={`${pw2.charAt(cursorPosition)}`}
                 />{" "}
-                <span className="input-group-text ">
+                <button className="input-group-text text-center ">
                   {cursorVisible && (
                     <>
                       {pw2.charAt(cursorPosition - 1)} <b>|</b>
                       {pw2.charAt(cursorPosition)}
                     </>
                   )}
-                </span>
+                </button>
               </div>
             </div>
           </div>
