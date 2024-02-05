@@ -16,6 +16,9 @@ function PasswordField({ onEndTesting }: RulesProps) {
     6: "C0mpl3xP@$$w0rD#2024",
   };
 
+  let [error1, setError1] = useState<string | null>(null);
+  let [error2, setError2] = useState<string | null>(null);
+
   let [pw1, setPw1] = useState(wrongPasswords[1]);
   let [pw2, setPw2] = useState(wrongPasswords[2]);
   const [totalDeletionCount1, setTotalDeletionCount1] = useState(0);
@@ -116,47 +119,77 @@ function PasswordField({ onEndTesting }: RulesProps) {
 
   const handleNextClick = () => {
     if (complexity === "Easy") {
-      setComplexity("Medium");
-      setProgress(progress + 30);
-      setTopFieldNumber(3);
-      setBottomFieldNumber(4);
-      setSaved({
-        ...saved,
-        dc1: totalDeletionCount1,
-        dc2: totalDeletionCount2,
-      });
+      if (pw1 === samplePasswords[1]) {
+        setError1(null);
+        if (pw2 == samplePasswords[2]) {
+          setError2(null);
+          setComplexity("Medium");
+          setProgress(progress + 30);
+          setTopFieldNumber(3);
+          setBottomFieldNumber(4);
+          setSaved({
+            ...saved,
+            dc1: totalDeletionCount1,
+            dc2: totalDeletionCount2,
+          });
 
-      setPw1(wrongPasswords[3]); // Update pw1 with wrongPassword[3]
-      setPw2(wrongPasswords[4]); // Update pw2 with wrongPassword[4]
+          setPw1(wrongPasswords[3]); // Update pw1 with wrongPassword[3]
+          setPw2(wrongPasswords[4]); // Update pw2 with wrongPassword[4]
 
-      setTotalDeletionCount1(0);
-      setTotalDeletionCount2(0);
+          setTotalDeletionCount1(0);
+          setTotalDeletionCount2(0);
+        } else {
+          setError2("Incorrect Password");
+        }
+      } else {
+        setError1("Incorrect Password");
+      }
     } else if (complexity === "Medium") {
-      setComplexity("Hard");
-      setProgress(progress + 30);
-      setTopFieldNumber(5);
-      setBottomFieldNumber(6);
-      setSaved({
-        ...saved,
-        dc3: totalDeletionCount1,
-        dc4: totalDeletionCount2,
-      });
+      if (pw1 === samplePasswords[3]) {
+        setError1(null);
+        if (pw2 == samplePasswords[4]) {
+          setError2(null);
+          setComplexity("Hard");
+          setProgress(progress + 30);
+          setTopFieldNumber(5);
+          setBottomFieldNumber(6);
+          setSaved({
+            ...saved,
+            dc3: totalDeletionCount1,
+            dc4: totalDeletionCount2,
+          });
 
-      setPw1(wrongPasswords[5]); // Update pw1 with wrongPassword[5]
-      setPw2(wrongPasswords[6]); // Update pw2 with wrongPassword[6]
+          setPw1(wrongPasswords[5]); // Update pw1 with wrongPassword[5]
+          setPw2(wrongPasswords[6]); // Update pw2 with wrongPassword[6]
 
-      setTotalDeletionCount1(0);
-      setTotalDeletionCount2(0);
+          setTotalDeletionCount1(0);
+          setTotalDeletionCount2(0);
+        } else {
+          setError2("Incorrect Password");
+        }
+      } else {
+        setError1("Incorrect Password");
+      }
     } else if (complexity === "Hard") {
-      onEndTesting();
-      setSaved({
-        ...saved,
-        dc5: totalDeletionCount1,
-        dc6: totalDeletionCount2,
-      });
+      if (pw1 === samplePasswords[5]) {
+        setError1(null);
+        if (pw2 == samplePasswords[6]) {
+          setError2(null);
+          onEndTesting();
+          setSaved({
+            ...saved,
+            dc5: totalDeletionCount1,
+            dc6: totalDeletionCount2,
+          });
 
-      setPw1(""); // Set pw1 to an empty string or any default value
-      setPw2(""); // Set pw2 to an empty string or any default value
+          setPw1(""); // Set pw1 to an empty string or any default value
+          setPw2(""); // Set pw2 to an empty string or any default value
+        } else {
+          setError2("Incorrect Password");
+        }
+      } else {
+        setError1("Incorrect Password");
+      }
     }
   };
 
@@ -193,7 +226,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
               </label>
               <input
                 type="password"
-                className="form-control"
+                className={`form-control ${error1 ? "is-invalid" : ""}`}
                 id="pw1"
                 placeholder="Password"
                 required
@@ -237,7 +270,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
               <div className="input-group mb-3">
                 <input
                   type="password"
-                  className="form-control masked-password"
+                  className={`form-control ${error2 ? "is-invalid" : ""}`}
                   id="pw2"
                   placeholder="Password"
                   required
