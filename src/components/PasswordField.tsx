@@ -35,14 +35,14 @@ function PasswordField({ onEndTesting }: RulesProps) {
     6: "C0mpl3xP@$$w0rD#2024",
   };
 
-  const wrongPasswords: { [key: number]: string } = {
-    1: "EasyPassword123",
-    2: "EasyPassword123",
-    3: "M3d!umStr0ng#",
-    4: "M3d!umStr0ng#",
-    5: "C0mpl3xP@$$w0rD#2024",
-    6: "C0mpl3xP@$$w0rD#2024",
-  };
+  // const wrongPasswords: { [key: number]: string } = {
+  //   1: "EasyPassword123",
+  //   2: "EasyPassword123",
+  //   3: "M3d!umStr0ng#",
+  //   4: "M3d!umStr0ng#",
+  //   5: "C0mpl3xP@$$w0rD#2024",
+  //   6: "C0mpl3xP@$$w0rD#2024",
+  // };
 
   const [cursorPosition, setCursorPosition] = useState(0);
   const handleCursorPositionChange = () => {
