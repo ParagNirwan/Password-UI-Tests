@@ -7,8 +7,17 @@ interface RulesProps {
 }
 
 function PasswordField({ onEndTesting }: RulesProps) {
-  const [pw1, setPw1] = useState("");
-  const [pw2, setPw2] = useState("");
+  const wrongPasswords: { [key: number]: string } = {
+    1: "EasyPassword123",
+    2: "EasyPassword123",
+    3: "M3d!umStr0ng#",
+    4: "M3d!umStr0ng#",
+    5: "C0mpl3xP@$$w0rD#2024",
+    6: "C0mpl3xP@$$w0rD#2024",
+  };
+
+  let [pw1, setPw1] = useState(wrongPasswords[1]);
+  let [pw2, setPw2] = useState(wrongPasswords[2]);
   const [totalDeletionCount1, setTotalDeletionCount1] = useState(0);
   const [totalDeletionCount2, setTotalDeletionCount2] = useState(0);
   const [topFieldNumber, setTopFieldNumber] = useState(1);
@@ -34,15 +43,6 @@ function PasswordField({ onEndTesting }: RulesProps) {
     5: "C0mpl3xP@$$w0rD#2024",
     6: "C0mpl3xP@$$w0rD#2024",
   };
-
-  // const wrongPasswords: { [key: number]: string } = {
-  //   1: "EasyPassword123",
-  //   2: "EasyPassword123",
-  //   3: "M3d!umStr0ng#",
-  //   4: "M3d!umStr0ng#",
-  //   5: "C0mpl3xP@$$w0rD#2024",
-  //   6: "C0mpl3xP@$$w0rD#2024",
-  // };
 
   const [cursorPosition, setCursorPosition] = useState(0);
   const handleCursorPositionChange = () => {
@@ -125,7 +125,10 @@ function PasswordField({ onEndTesting }: RulesProps) {
         dc1: totalDeletionCount1,
         dc2: totalDeletionCount2,
       });
-      console.log(saved);
+
+      setPw1(wrongPasswords[3]); // Update pw1 with wrongPassword[3]
+      setPw2(wrongPasswords[4]); // Update pw2 with wrongPassword[4]
+
       setTotalDeletionCount1(0);
       setTotalDeletionCount2(0);
     } else if (complexity === "Medium") {
@@ -138,7 +141,10 @@ function PasswordField({ onEndTesting }: RulesProps) {
         dc3: totalDeletionCount1,
         dc4: totalDeletionCount2,
       });
-      console.log(saved);
+
+      setPw1(wrongPasswords[5]); // Update pw1 with wrongPassword[5]
+      setPw2(wrongPasswords[6]); // Update pw2 with wrongPassword[6]
+
       setTotalDeletionCount1(0);
       setTotalDeletionCount2(0);
     } else if (complexity === "Hard") {
@@ -148,7 +154,9 @@ function PasswordField({ onEndTesting }: RulesProps) {
         dc5: totalDeletionCount1,
         dc6: totalDeletionCount2,
       });
-      console.log(saved);
+
+      setPw1(""); // Set pw1 to an empty string or any default value
+      setPw2(""); // Set pw2 to an empty string or any default value
     }
   };
 
@@ -239,7 +247,6 @@ function PasswordField({ onEndTesting }: RulesProps) {
                     handlePasswordChange2(e, setPw2, setTotalDeletionCount2)
                   }
                   onSelect={handleCursorPositionChange}
-                  // title={`${pw2.charAt(cursorPosition)}`}
                 />{" "}
                 <button className="input-group-text text-center ">
                   {cursorVisible && (
