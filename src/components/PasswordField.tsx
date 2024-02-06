@@ -200,9 +200,8 @@ function PasswordField({ onEndTesting }: RulesProps) {
           </div>
           <div className="card-body">
             <p className="card-text">
-              Correct Password: "{samplePasswords[topFieldNumber]}" &nbsp;
-              &nbsp;&nbsp; &nbsp; Incorrect Password: "
-              {wrongPasswords[topFieldNumber]}"
+              Correct Password: &nbsp; &nbsp;"{samplePasswords[topFieldNumber]}"{" "}
+              <br /> Incorrect Password: "{wrongPasswords[topFieldNumber]}"
             </p>
             <div>
               <label htmlFor="email" className="form-label required">
@@ -247,9 +246,8 @@ function PasswordField({ onEndTesting }: RulesProps) {
           </div>
           <div className="card-body">
             <p className="card-text">
-              Correct Password: "{samplePasswords[topFieldNumber]}" &nbsp;
-              &nbsp;&nbsp; &nbsp; Incorrect Password: "
-              {wrongPasswords[bottomFieldNumber]}"
+              Correct Password: &nbsp; &nbsp;"{samplePasswords[topFieldNumber]}"{" "}
+              <br /> Incorrect Password: "{wrongPasswords[bottomFieldNumber]}"
             </p>
             <label htmlFor="email2" className="form-label required">
               Email
