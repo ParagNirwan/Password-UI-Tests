@@ -1,19 +1,20 @@
 import { ChangeEvent, SetStateAction, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import "./PasswordField.css";
-
+import { useAppContext } from "./AppContext";
 interface RulesProps {
   onEndTesting: () => void;
 }
 
 function PasswordField({ onEndTesting }: RulesProps) {
+  const { saved, setSaved } = useAppContext();
   const wrongPasswords: { [key: number]: string } = {
-    1: "EasyPassword123",
-    2: "EasyPassword123",
-    3: "M3d!umStr0ng#",
-    4: "M3d!umStr0ng#",
-    5: "C0mpl3xP@$$w0rD#2024",
-    6: "C0mpl3xP@$$w0rD#2024",
+    1: "EasyPaasword123",
+    2: "Easypassword123",
+    3: "M3diumstr0ng#",
+    4: "Med!umStrong#",
+    5: "ComPlexPa$$w0rD#2024", //C0mpl3xP@$$w0rD#2024
+    6: "C0mPl3xPassw0rD#2024", //C0mpl3xP@$$w0rD#2024
   };
 
   let [error1, setError1] = useState<string | null>(null);
@@ -27,14 +28,6 @@ function PasswordField({ onEndTesting }: RulesProps) {
   const [bottomFieldNumber, setBottomFieldNumber] = useState(2);
   const [progress, setProgress] = useState(5);
   const [complexity, setComplexity] = useState("Easy");
-  const [saved, setSaved] = useState({
-    dc1: 0,
-    dc2: 0,
-    dc3: 0,
-    dc4: 0,
-    dc5: 0,
-    dc6: 0,
-  });
 
   const [cursorVisible, setCursorVisible] = useState(false);
 
@@ -196,7 +189,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
   return (
     <>
       <ProgressBar progress={progress} />
-      <div className="container">
+      <div className="container col-lg-4 col-md-6">
         <br />
         <h2 className="text-center">Password Complexity {complexity}</h2>
         <br />
@@ -207,7 +200,9 @@ function PasswordField({ onEndTesting }: RulesProps) {
           </div>
           <div className="card-body">
             <p className="card-text">
-              Correct Password: "{samplePasswords[topFieldNumber]}"
+              Correct Password: "{samplePasswords[topFieldNumber]}" &nbsp;
+              &nbsp;&nbsp; &nbsp; Incorrect Password: "
+              {wrongPasswords[topFieldNumber]}"
             </p>
             <div>
               <label htmlFor="email" className="form-label required">
@@ -236,6 +231,11 @@ function PasswordField({ onEndTesting }: RulesProps) {
                   handlePasswordChange(e, setPw1, setTotalDeletionCount1)
                 }
               />
+              {error1 ? (
+                <div className="invalid-feedback">Incorrect password</div>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         </div>
@@ -247,7 +247,9 @@ function PasswordField({ onEndTesting }: RulesProps) {
           </div>
           <div className="card-body">
             <p className="card-text">
-              Correct Password: "{samplePasswords[topFieldNumber]}"
+              Correct Password: "{samplePasswords[topFieldNumber]}" &nbsp;
+              &nbsp;&nbsp; &nbsp; Incorrect Password: "
+              {wrongPasswords[bottomFieldNumber]}"
             </p>
             <label htmlFor="email2" className="form-label required">
               Email
@@ -281,14 +283,19 @@ function PasswordField({ onEndTesting }: RulesProps) {
                   }
                   onSelect={handleCursorPositionChange}
                 />{" "}
-                <button className="input-group-text text-center ">
+                <span className="input-group-text text-center ">
                   {cursorVisible && (
                     <>
                       {pw2.charAt(cursorPosition - 1)} <b>|</b>
                       {pw2.charAt(cursorPosition)}
                     </>
                   )}
-                </button>
+                </span>
+                {error1 ? (
+                  <div className="invalid-feedback">Incorrect password</div>
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
           </div>
@@ -302,7 +309,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
         </div>
         <br />
 
-        {/*This Code is for testing. remove this from production build*/}
+        {/*This Code is for testing. remove this from production build*
         <div
           style={{
             backgroundColor: "gray",
@@ -318,7 +325,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
             {totalDeletionCount2}
           </p>
         </div>
-        {/*This Code is for testing. remove this from production build*/}
+        *This Code is for testing. remove this from production build*/}
       </div>
     </>
   );
