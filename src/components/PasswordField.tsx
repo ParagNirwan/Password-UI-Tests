@@ -9,12 +9,28 @@ interface RulesProps {
 function PasswordField({ onEndTesting }: RulesProps) {
   const { saved, setSaved } = useAppContext();
   const wrongPasswords: { [key: number]: string } = {
-    1: "EasyPaasword123",
-    2: "Easypassword123",
-    3: "M3diumstr0ng#",
-    4: "Med!umStrong#",
-    5: "ComPlexPa$$w0rD#2024", //C0mpl3xP@$$w0rD#2024
-    6: "C0mPl3xPassw0rD#2024", //C0mpl3xP@$$w0rD#2024
+    // 1: "EasyPaasword123",
+    // 2: "Easypassword123",
+    // 3: "M3diumstr0ng#",
+    // 4: "Med!umStrong#",
+    // 5: "ComPlexPa$$w0rD#2024", //C0mpl3xP@$$w0rD#2024
+    // 6: "C0mPl3xPassw0rD#2024", //C0mpl3xP@$$w0rD#2024
+
+    1: "EasyPassword123",
+    2: "EasyPassword123",
+    3: "M3d!umStr0ng#",
+    4: "M3d!umStr0ng#",
+    5: "C0mpl3xP@$$w0rD#2024",
+    6: "C0mpl3xP@$$w0rD#2024",
+  };
+
+  const samplePasswords: { [key: number]: string } = {
+    1: "EasyPassword123",
+    2: "EasyPassword123",
+    3: "M3d!umStr0ng#",
+    4: "M3d!umStr0ng#",
+    5: "C0mpl3xP@$$w0rD#2024",
+    6: "C0mpl3xP@$$w0rD#2024",
   };
 
   let [error1, setError1] = useState<string | null>(null);
@@ -30,15 +46,6 @@ function PasswordField({ onEndTesting }: RulesProps) {
   const [complexity, setComplexity] = useState("Easy");
 
   const [cursorVisible, setCursorVisible] = useState(false);
-
-  const samplePasswords: { [key: number]: string } = {
-    1: "EasyPassword123",
-    2: "EasyPassword123",
-    3: "M3d!umStr0ng#",
-    4: "M3d!umStr0ng#",
-    5: "C0mpl3xP@$$w0rD#2024",
-    6: "C0mpl3xP@$$w0rD#2024",
-  };
 
   const [cursorPosition, setCursorPosition] = useState(0);
   const handleCursorPositionChange = () => {
@@ -106,7 +113,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
       deletionCountState((prevCount) => prevCount + deletedCharacters);
     }
     setNewValue(currentValue);
-    console.log(newValue);
+    //console.log(newValue);
     setPassword(currentValue);
   };
 
