@@ -112,7 +112,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
       const deletedCharacters = previousValue.length - currentValue.length;
       deletionCountState((prevCount) => prevCount + deletedCharacters);
     }
-    setNewValue(currentValue);
+    //setNewValue(currentValue);
     //console.log(newValue);
     setPassword(currentValue);
   };
