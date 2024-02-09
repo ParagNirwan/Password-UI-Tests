@@ -256,6 +256,8 @@ function PasswordField({ onEndTesting }: RulesProps) {
                   className="input-group-text text-center"
                   onMouseDown={mouseDown}
                   onMouseUp={mouseUp1}
+                  onTouchStart={mouseDown}
+                  onTouchEnd={mouseUp1}
                 >
                   <img src="/eye.png" className="eye"></img>
                 </button>
@@ -312,6 +314,8 @@ function PasswordField({ onEndTesting }: RulesProps) {
                   className="input-group-text text-center"
                   onMouseDown={mouseDown2}
                   onMouseUp={mouseUp2}
+                  onTouchStart={mouseDown2}
+                  onTouchEnd={mouseUp2}
                 >
                   {(cursorVisible && (
                     <>
