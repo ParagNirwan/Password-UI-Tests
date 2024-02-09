@@ -7,6 +7,9 @@ interface RulesProps {
 }
 
 function PasswordField({ onEndTesting }: RulesProps) {
+  let [pw1Controller, setPw1Controller] = useState<string>("password");
+  let [pw2Controller, setPw2Controller] = useState<string>("password");
+
   const { saved, setSaved } = useAppContext();
   const wrongPasswords: { [key: number]: string } = {
     // 1: "EasyPaasword123",
@@ -57,7 +60,6 @@ function PasswordField({ onEndTesting }: RulesProps) {
       }
     }, 0);
 
-    // Show the span for 0.5 seconds
     setCursorVisible(true);
     setTimeout(() => {
       setCursorVisible(false);
@@ -91,7 +93,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
 
     setPassword(currentValue);
   };
-  //const [newValue, setNewValue] = useState("");
+
   const handlePasswordChange2 = (
     event: ChangeEvent<HTMLInputElement>,
     setPassword: {
@@ -112,8 +114,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
       const deletedCharacters = previousValue.length - currentValue.length;
       deletionCountState((prevCount) => prevCount + deletedCharacters);
     }
-    //setNewValue(currentValue);
-    //console.log(newValue);
+
     setPassword(currentValue);
   };
 
@@ -193,6 +194,19 @@ function PasswordField({ onEndTesting }: RulesProps) {
     }
   };
 
+  const mouseDown = () => {
+    setPw1Controller("text");
+  };
+  const mouseDown2 = () => {
+    setPw2Controller("text");
+  };
+  const mouseUp2 = () => {
+    setPw2Controller("password");
+  };
+  const mouseUp1 = () => {
+    setPw1Controller("password");
+  };
+
   return (
     <>
       <ProgressBar progress={progress} />
@@ -225,23 +239,32 @@ function PasswordField({ onEndTesting }: RulesProps) {
               <label htmlFor="pw1" className="form-label required">
                 Password
               </label>
-              <input
-                type="password"
-                className={`form-control ${error1 ? "is-invalid" : ""}`}
-                id="pw1"
-                placeholder="Password"
-                required
-                onPaste={handlePaste}
-                value={pw1}
-                onChange={(e) =>
-                  handlePasswordChange(e, setPw1, setTotalDeletionCount1)
-                }
-              />
-              {error1 ? (
-                <div className="invalid-feedback">Incorrect password</div>
-              ) : (
-                <></>
-              )}
+              <div className="input-group mb-3">
+                <input
+                  type={pw1Controller}
+                  className={`form-control ${error1 ? "is-invalid" : ""}`}
+                  id="pw1"
+                  placeholder="Password"
+                  required
+                  onPaste={handlePaste}
+                  value={pw1}
+                  onChange={(e) =>
+                    handlePasswordChange(e, setPw1, setTotalDeletionCount1)
+                  }
+                />{" "}
+                <button
+                  className="input-group-text text-center"
+                  onMouseDown={mouseDown}
+                  onMouseUp={mouseUp1}
+                >
+                  <img src="/eye.png" className="eye"></img>
+                </button>
+                {error1 ? (
+                  <div className="invalid-feedback">Incorrect password</div>
+                ) : (
+                  <></>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -271,12 +294,9 @@ function PasswordField({ onEndTesting }: RulesProps) {
               <label htmlFor="pw2" className="form-label required">
                 Password{" "}
               </label>
-              {/* <div className="topClass">
-                {pw2.charAt(cursorPosition - 1)}|{pw2.charAt(cursorPosition)}
-              </div> */}
               <div className="input-group mb-3">
                 <input
-                  type="password"
+                  type={pw2Controller}
                   className={`form-control ${error2 ? "is-invalid" : ""}`}
                   id="pw2"
                   placeholder="Password"
@@ -288,14 +308,18 @@ function PasswordField({ onEndTesting }: RulesProps) {
                   }
                   onSelect={handleCursorPositionChange}
                 />{" "}
-                <span className="input-group-text text-center ">
-                  {cursorVisible && (
+                <button
+                  className="input-group-text text-center"
+                  onMouseDown={mouseDown2}
+                  onMouseUp={mouseUp2}
+                >
+                  {(cursorVisible && (
                     <>
                       {pw2.charAt(cursorPosition - 1)} <b>|</b>
                       {pw2.charAt(cursorPosition)}
                     </>
-                  )}
-                </span>
+                  )) || <img src="/eye.png" className="eye"></img>}
+                </button>
                 {error1 ? (
                   <div className="invalid-feedback">Incorrect password</div>
                 ) : (
@@ -313,24 +337,6 @@ function PasswordField({ onEndTesting }: RulesProps) {
           </a>
         </div>
         <br />
-
-        {/*This Code is for testing. remove this from production build*
-        <div
-          style={{
-            backgroundColor: "gray",
-            color: "white",
-            borderRadius: "4px",
-          }}
-        >
-          <p className="text-center">
-            {" "}
-            For Testing purpose only | Total Deletion Count For Field &nbsp;
-            {topFieldNumber} = {totalDeletionCount1}
-            &nbsp; &nbsp; Total Deletion Count For Field {bottomFieldNumber} =
-            {totalDeletionCount2}
-          </p>
-        </div>
-        *This Code is for testing. remove this from production build*/}
       </div>
     </>
   );
