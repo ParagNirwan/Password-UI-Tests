@@ -29,7 +29,7 @@ function Rules({ onBeginTesting }: RulesProps) {
   return (
     <div className="container">
       <br />
-      <div className="card">
+      <div className="card box">
         <div className="card-header bg-warning-subtle text-dark">
           Instructions for the tests.
         </div>
@@ -45,7 +45,7 @@ function Rules({ onBeginTesting }: RulesProps) {
             </ul>
           </span>
           <div className="text-center">
-            <button className="btn btn-primary" onClick={onBeginTesting}>
+            <button className="btn btn-primary box" onClick={onBeginTesting}>
               Begin Testing
             </button>
           </div>

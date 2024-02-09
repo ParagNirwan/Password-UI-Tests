@@ -1,6 +1,7 @@
 import { ChangeEvent, SetStateAction, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import "./PasswordField.css";
+import "./main.css";
 import { useAppContext } from "./AppContext";
 interface RulesProps {
   onEndTesting: () => void;
@@ -44,7 +45,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
   const [totalDeletionCount1, setTotalDeletionCount1] = useState(0);
   const [totalDeletionCount2, setTotalDeletionCount2] = useState(0);
   const [topFieldNumber, setTopFieldNumber] = useState(1);
-  const [bottomFieldNumber, setBottomFieldNumber] = useState(2);
+  //const [bottomFieldNumber, setBottomFieldNumber] = useState(2);
   const [progress, setProgress] = useState(5);
   const [complexity, setComplexity] = useState("Easy");
 
@@ -127,7 +128,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
           setComplexity("Medium");
           setProgress(progress + 30);
           setTopFieldNumber(3);
-          setBottomFieldNumber(4);
+          //setBottomFieldNumber(4);
           setSaved({
             ...saved,
             dc1: totalDeletionCount1,
@@ -153,7 +154,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
           setComplexity("Hard");
           setProgress(progress + 30);
           setTopFieldNumber(5);
-          setBottomFieldNumber(6);
+          //setBottomFieldNumber(6);
           setSaved({
             ...saved,
             dc3: totalDeletionCount1,
@@ -215,14 +216,13 @@ function PasswordField({ onEndTesting }: RulesProps) {
         <h2 className="text-center">Password Complexity {complexity}</h2>
         <br />
 
-        <div className="card">
+        <div className="card box">
           <div className="card-header bg-info-subtle">
             Password Field Variation 1
           </div>
           <div className="card-body">
             <p className="card-text">
               Correct Password: &nbsp; &nbsp;"{samplePasswords[topFieldNumber]}"{" "}
-              <br /> Incorrect Password: "{wrongPasswords[topFieldNumber]}"
             </p>
             <div>
               <label htmlFor="email" className="form-label required">
@@ -272,14 +272,13 @@ function PasswordField({ onEndTesting }: RulesProps) {
         </div>
         <br />
 
-        <div className="card">
+        <div className="card box">
           <div className="card-header bg-purp-subtle">
             Password Field Variation 2
           </div>
           <div className="card-body">
             <p className="card-text">
               Correct Password: &nbsp; &nbsp;"{samplePasswords[topFieldNumber]}"{" "}
-              <br /> Incorrect Password: "{wrongPasswords[bottomFieldNumber]}"
             </p>
             <label htmlFor="email2" className="form-label required">
               Email
@@ -343,7 +342,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
         <br />
 
         <div className="text-center">
-          <a href="#" className="btn btn-primary" onClick={handleNextClick}>
+          <a href="#" className="btn btn-primary box" onClick={handleNextClick}>
             Next
           </a>
         </div>

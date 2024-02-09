@@ -1,6 +1,7 @@
+import "./main.css";
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg bg-dark fixed-top">
+    <nav className="navbar navbar-expand-lg bg-dark fixed-top box">
       <div className="container-fluid">
         <a className="navbar-brand text-light" href="/">
           <img

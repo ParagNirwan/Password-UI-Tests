@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "./main.css";
 function End() {
   const [catImage, setCatImage] = useState("");
 
@@ -36,7 +36,7 @@ function End() {
           <img
             src={catImage || "https://placekitten.com/300/200"}
             alt="Random Feline"
-            className="img-fluid rounded"
+            className="img-fluid rounded box"
           />
         </div>
       </div>

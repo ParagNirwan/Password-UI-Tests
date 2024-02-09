@@ -4,6 +4,7 @@ import config from "../../config";
 import "./Questionnaire.css";
 import firebase from "firebase/compat/app";
 import "firebase/compat/database";
+import "./main.css";
 interface QuestionnaireProps {
   onFinish: () => void;
 }
@@ -67,7 +68,7 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ onFinish }) => {
 
   return (
     <div className="container col-lg-6 col-md-6">
-      <div className="card">
+      <div className="card box">
         <div className="card-header bg-success-subtle text-dark">
           Questionnaire
         </div>
@@ -167,7 +168,7 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ onFinish }) => {
           <center>
             <div className="form-group">
               <button
-                className="btn bg-success text-light"
+                className="btn bg-success text-light box"
                 onClick={handleFinish}
               >
                 Finish
