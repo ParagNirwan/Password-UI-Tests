@@ -4,3 +4,31 @@
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
 }
+
+.lambai {
+  width: 50%;
+}
+
+@media only screen and (max-width: 1080px) {
+  .lambai {
+    width: 85%;
+  }
+}
+
+.lambai2 {
+  width: 30%;
+}
+
+@media only screen and (max-width: 1080px) {
+  .lambai2 {
+    width: 85%;
+  }
+}
+img {
+  pointer-events: none;
+}
+
+.pBorder {
+  border: solid 1px;
+  border-color: green;
+}

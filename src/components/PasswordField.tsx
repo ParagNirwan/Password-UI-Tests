@@ -218,7 +218,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
 
         <div className="card box">
           <div className="card-header bg-info-subtle">
-            Password Field Variation 1
+            <strong>Variation A</strong>
           </div>
           <div className="card-body">
             <p className="card-text">
@@ -274,7 +274,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
 
         <div className="card box">
           <div className="card-header bg-purp-subtle">
-            Password Field Variation 2
+            <strong>Variation B</strong>
           </div>
           <div className="card-body">
             <p className="card-text">

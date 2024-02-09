@@ -141,9 +141,11 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ onFinish }) => {
                 onChange={() => setPasswordField("Field 1")}
               />
               <label className="form-check-label" htmlFor="field1">
-                <img src="/field1.png" className="lambai"></img>
+                Variant A <br />
+                <img src="/v1.gif" className="lambai"></img>
               </label>
             </div>
+            <br />
             <div className="form-check">
               <input
                 type="radio"
@@ -156,7 +158,8 @@ const Questionnaire: React.FC<QuestionnaireProps> = ({ onFinish }) => {
                 onChange={() => setPasswordField("Field 2")}
               />
               <label className="form-check-label" htmlFor="field2">
-                <img src="/field2.png" className="lambai"></img>
+                Variant B <br />
+                <img src="/v2.gif" className="lambai"></img>
               </label>
             </div>
             {passwordFieldError && (

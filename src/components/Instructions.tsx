@@ -1,7 +1,7 @@
 interface RulesProps {
   onBeginTesting: () => void;
 }
-
+import "./main.css";
 function Rules({ onBeginTesting }: RulesProps) {
   const instructions = [
     {
@@ -42,6 +42,18 @@ function Rules({ onBeginTesting }: RulesProps) {
                   <strong>{instruction.title}:</strong> {instruction.content}
                 </li>
               ))}
+              <li>
+                The test has 2 variants of password fields. Notice the
+                difference and use that during the UI tests.
+                <ul>
+                  <li>
+                    Variant A: <img src="/v1.gif" className="lambai2"></img>
+                  </li>
+                  <li>
+                    Variant B: <img src="/v2.gif" className="lambai2"></img>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </span>
           <div className="text-center">

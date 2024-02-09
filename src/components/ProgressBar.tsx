@@ -6,7 +6,7 @@ function ProgressBar({ progress }: ProgressBarProps) {
     <div className="container">
       <br />
       <div
-        className="progress box"
+        className="progress box pBorder"
         role="progressbar"
         aria-label="Example 20px high"
         style={{ height: "18px" }}
