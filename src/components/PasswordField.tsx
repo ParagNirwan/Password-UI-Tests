@@ -322,7 +322,14 @@ function PasswordField({ onEndTesting }: RulesProps) {
                       {pw2.charAt(cursorPosition - 1)} <b>|</b>
                       {pw2.charAt(cursorPosition)}
                     </>
-                  )) || <img src="/eye.png" className="eye"></img>}
+                  )) || (
+                    <img
+                      src="/eye.png"
+                      className="eye"
+                      onTouchStart={mouseDown2}
+                      onTouchEnd={mouseUp2}
+                    ></img>
+                  )}
                 </button>
                 {error1 ? (
                   <div className="invalid-feedback">Incorrect password</div>
