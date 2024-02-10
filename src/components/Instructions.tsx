@@ -27,7 +27,7 @@ function Rules({ onBeginTesting }: RulesProps) {
   ];
 
   return (
-    <div className="container animate__animated animate__backInLeft">
+    <div className="container">
       <br />
       <div className="card box">
         <div className="card-header bg-warning-subtle text-dark">

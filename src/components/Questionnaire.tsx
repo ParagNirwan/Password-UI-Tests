@@ -17,7 +17,7 @@ const Questionnaire: React.FC<QuestionnaireProps> = () => {
           width="500"
           height="1961"
           frameBorder="0"
-          className="box animate__animated animate__backInDown"
+          className="box"
         >
           Loading…
         </iframe>
