@@ -22,12 +22,12 @@ function Rules({ onBeginTesting }: RulesProps) {
     {
       title: "Try Not to delete the whole password",
       content:
-        "Try Not to delete the whole password at once and only the wrong characters.",
+        "Try Not to delete the whole password at once and just the wrong characters.",
     },
   ];
 
   return (
-    <div className="container">
+    <div className="container animate__animated animate__backInLeft">
       <br />
       <div className="card box">
         <div className="card-header bg-warning-subtle text-dark">

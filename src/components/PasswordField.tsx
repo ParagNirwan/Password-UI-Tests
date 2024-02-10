@@ -1,8 +1,12 @@
 import { ChangeEvent, SetStateAction, useState } from "react";
-import ProgressBar from "./ProgressBar";
+// import ProgressBar from "./ProgressBar";
 import "./PasswordField.css";
 import "./main.css";
 import { useAppContext } from "./AppContext";
+import firebase from "firebase/compat/app";
+import "firebase/compat/database";
+import config from "../../config";
+import "animate.css";
 interface RulesProps {
   onEndTesting: () => void;
 }
@@ -45,7 +49,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
   const [totalDeletionCount1, setTotalDeletionCount1] = useState(0);
   const [totalDeletionCount2, setTotalDeletionCount2] = useState(0);
   const [topFieldNumber, setTopFieldNumber] = useState(1);
-  //const [bottomFieldNumber, setBottomFieldNumber] = useState(2);
+  // const [bottomFieldNumber, setBottomFieldNumber] = useState(2);
   const [progress, setProgress] = useState(5);
   const [complexity, setComplexity] = useState("Easy");
 
@@ -128,7 +132,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
           setComplexity("Medium");
           setProgress(progress + 30);
           setTopFieldNumber(3);
-          //setBottomFieldNumber(4);
+          // setBottomFieldNumber(4);
           setSaved({
             ...saved,
             dc1: totalDeletionCount1,
@@ -154,7 +158,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
           setComplexity("Hard");
           setProgress(progress + 30);
           setTopFieldNumber(5);
-          //setBottomFieldNumber(6);
+          // setBottomFieldNumber(6);
           setSaved({
             ...saved,
             dc3: totalDeletionCount1,
@@ -184,6 +188,10 @@ function PasswordField({ onEndTesting }: RulesProps) {
             dc6: totalDeletionCount2,
           });
 
+          //Firebase Thingy
+          firebase.initializeApp(config);
+          firebase.database().ref("questionnaireData").push(saved);
+
           setPw1(""); // Set pw1 to an empty string or any default value
           setPw2(""); // Set pw2 to an empty string or any default value
         } else {
@@ -210,15 +218,19 @@ function PasswordField({ onEndTesting }: RulesProps) {
 
   return (
     <>
-      <ProgressBar progress={progress} />
+      {/* <ProgressBar progress={progress} /> */}
       <div className="container col-lg-4 col-md-6">
         <br />
         <h2 className="text-center">Password Complexity {complexity}</h2>
+        <h6 className="text-center">
+          <span className="note">Note:</span> Both fields have different wrong
+          character inputs
+        </h6>
         <br />
 
         <div className="card box">
           <div className="card-header bg-info-subtle">
-            <strong>Variation A</strong>
+            Password Field Variation 1
           </div>
           <div className="card-body">
             <p className="card-text">
@@ -274,7 +286,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
 
         <div className="card box">
           <div className="card-header bg-purp-subtle">
-            <strong>Variation B</strong>
+            Password Field Variation 2
           </div>
           <div className="card-body">
             <p className="card-text">
@@ -342,7 +354,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
         <br />
 
         <div className="text-center">
-          <a href="#" className="btn btn-primary box" onClick={handleNextClick}>
+          <a href="#" className="btn btn-primary" onClick={handleNextClick}>
             Next
           </a>
         </div>
