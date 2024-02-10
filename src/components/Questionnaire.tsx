@@ -9,7 +9,7 @@ interface QuestionnaireProps {
 
 const Questionnaire: React.FC<QuestionnaireProps> = () => {
   return (
-    <>
+    <div className="container">
       <br />
       <center>
         <iframe
@@ -22,7 +22,7 @@ const Questionnaire: React.FC<QuestionnaireProps> = () => {
           Loading…
         </iframe>
       </center>
-    </>
+    </div>
   );
 };
 
