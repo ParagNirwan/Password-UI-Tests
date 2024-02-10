@@ -353,8 +353,8 @@ function PasswordField({ onEndTesting }: RulesProps) {
         </div>
         <br />
 
-        <div className="text-center box">
-          <a href="#" className="btn btn-primary" onClick={handleNextClick}>
+        <div className="text-center">
+          <a href="#" className="btn btn-primary box" onClick={handleNextClick}>
             Next
           </a>
         </div>
