@@ -14,7 +14,7 @@ const Questionnaire: React.FC<QuestionnaireProps> = () => {
       <center>
         <iframe
           src="https://docs.google.com/forms/d/e/1FAIpQLSdvavEIlHLl_YZr0UmeoHBnUdOAFIt97K5zPxD-m4qGvU_fIA/viewform?embedded=true"
-          width="640"
+          width="500"
           height="1961"
           frameBorder="0"
           className="box animate__animated animate__backInDown"
