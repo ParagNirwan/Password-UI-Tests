@@ -14,6 +14,10 @@ function Rules({ onBeginTesting }: RulesProps) {
       content:
         "The primary goal is to evaluate the efficiency and accuracy of password entry. Participants should concentrate on entering the password correctly, prioritizing accuracy over speed.",
     },
+    {
+      title: "Task type",
+      content: "Some tasks will have the password field with wrong passwords inputted. You'll have to correct the passwords."
+    }
   ];
 
   return (

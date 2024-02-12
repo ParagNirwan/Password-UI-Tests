@@ -16,25 +16,25 @@ function PasswordField({ onEndTesting }: RulesProps) {
   let [pw2Controller, setPw2Controller] = useState<string>("password");
 
   const { saved, setSaved } = useAppContext();
-  // const wrongPasswords: { [key: number]: string } = {
-  //   // 1: "EasyPaasword123",
-  //   // 2: "Easypassword123",
-  //   // 3: "M3diumstr0ng#",
-  //   // 4: "Med!umStrong#",
-  //   // 5: "ComPlexPa$$w0rD#2024", //C0mpl3xP@$$w0rD#2024
-  //   // 6: "C0mPl3xPassw0rD#2024", //C0mpl3xP@$$w0rD#2024
+  const wrongPasswords: { [key: number]: string } = {
+    1: "EasyPaasword123",
+    2: "Easypassword123",
+    3: "M3diumstr0ng#",
+    4: "Med!umStrong#",
+    5: "ComPlexPa$$w0rD#2024", //C0mpl3xP@$$w0rD#2024
+    6: "C0mPl3xPassw0rD#2024", //C0mpl3xP@$$w0rD#2024
 
-  //   1: "EasyPassword123",
-  //   2: "EasyPassword123",
-  //   3: "M3d!umStr0ng#",
-  //   4: "M3d!umStr0ng#",
-  //   5: "C0mpl3xP@$$w0rD#2024",
-  //   6: "C0mpl3xP@$$w0rD#2024",
-  // };
+    // 1: "EasyPassword123",
+    // 2: "EasyPassword123",
+    // 3: "M3d!umStr0ng#",
+    // 4: "M3d!umStr0ng#",
+    // 5: "C0mpl3xP@$$w0rD#2024",
+    // 6: "C0mpl3xP@$$w0rD#2024",
+  };
 
   const samplePasswords: { [key: number]: string } = {
     1: "EasyPassword123",
-    2: "EasyPassword123",
+    2: "Password456Weak",
     3: "M3d!umStr0ng#",
     4: "M3d!umStr0ng#",
     5: "C0mpl3xP@$$w0rD#2024",
@@ -139,8 +139,8 @@ function PasswordField({ onEndTesting }: RulesProps) {
             dc2: totalDeletionCount2,
           });
 
-          setPw1(""); // Update pw1 with wrongPassword[3]
-          setPw2(""); // Update pw2 with wrongPassword[4]
+          setPw1(wrongPasswords[3]); // Update pw1 with wrongPassword[3]
+          setPw2(wrongPasswords[4]); // Update pw2 with wrongPassword[4]
 
           setTotalDeletionCount1(0);
           setTotalDeletionCount2(0);
@@ -165,8 +165,8 @@ function PasswordField({ onEndTesting }: RulesProps) {
             dc4: totalDeletionCount2,
           });
 
-          setPw1(""); // Update pw1 with wrongPassword[5]
-          setPw2(""); // Update pw2 with wrongPassword[6]
+          setPw1(wrongPasswords[5]); // Update pw1 with wrongPassword[5]
+          setPw2(wrongPasswords[6]); // Update pw2 with wrongPassword[6]
 
           setTotalDeletionCount1(0);
           setTotalDeletionCount2(0);
@@ -222,10 +222,12 @@ function PasswordField({ onEndTesting }: RulesProps) {
       <div className="container col-lg-4 col-md-6">
         <br />
         <h2 className="text-center">Password Complexity {complexity}</h2>
-        {/* <h6 className="text-center">
-          <span className="note">Note:</span> Both fields have different wrong
-          character inputs
-        </h6> */}
+        {complexity === "Hard" || complexity === "Medium" ? (
+          <h6 className="text-center">
+            <span className="note">Note:</span> Both fields have different wrong
+            character inputs
+          </h6>
+        ) : null}
         <br />
 
         <div className="card box">
