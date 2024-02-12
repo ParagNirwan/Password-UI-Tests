@@ -14,16 +14,6 @@ function Rules({ onBeginTesting }: RulesProps) {
       content:
         "The primary goal is to evaluate the efficiency and accuracy of password entry. Participants should concentrate on entering the password correctly, prioritizing accuracy over speed.",
     },
-    {
-      title: "Wrong Password Entry",
-      content:
-        "The prefilled passwords have one or more characters wrong in it, please correct them. Try to delete only the wrong characters, the less characters you delete the better.",
-    },
-    {
-      title: "Try Not to delete the whole password",
-      content:
-        "Try Not to delete the whole password at once and just the wrong characters.",
-    },
   ];
 
   return (
@@ -43,8 +33,8 @@ function Rules({ onBeginTesting }: RulesProps) {
                 </li>
               ))}
               <li>
-                The test has 2 variants of password fields. Notice the
-                difference and use that during the UI tests.
+                <b>2 Variants: </b>The test has 2 variants of password fields.
+                Notice the difference and use that during the UI tests.
                 <ul>
                   <li>
                     Variant A: <img src="/v1.gif" className="lambai2"></img>
