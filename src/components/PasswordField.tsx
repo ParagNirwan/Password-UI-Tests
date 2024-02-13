@@ -18,7 +18,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
   const { saved, setSaved } = useAppContext();
   const wrongPasswords: { [key: number]: string } = {
     1: "EasyPaasword123",
-    2: "Easypassword123",
+    2: "",
     3: "M3diumstr0ng#",
     4: "Med!umStrong#",
     5: "ComPlexPa$$w0rD#2024", //C0mpl3xP@$$w0rD#2024
@@ -292,7 +292,7 @@ function PasswordField({ onEndTesting }: RulesProps) {
           </div>
           <div className="card-body">
             <p className="card-text">
-              Correct Password: &nbsp; &nbsp;"{samplePasswords[topFieldNumber]}"{" "}
+              Correct Password: &nbsp; &nbsp;"{samplePasswords[topFieldNumber+1]}"{" "}
             </p>
             <label htmlFor="email2" className="form-label required">
               Email
