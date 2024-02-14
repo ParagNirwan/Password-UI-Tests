@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {  useState } from "react";
 import Navbar from "./components/Navbar";
 import PasswordField from "./components/PasswordField";
 import Rules from "./components/Instructions";
@@ -10,6 +10,7 @@ function App() {
   const [testingStarted, setTestingStarted] = useState(false);
   const [testingEnded, setTestingEnded] = useState(false);
   const [finish, setFinish] = useState(false);
+
   // Function to handle the start of testing
   const handleBeginTesting = () => {
     setTestingStarted(true);

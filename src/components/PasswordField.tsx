@@ -1,4 +1,4 @@
-import { ChangeEvent, SetStateAction, useState } from "react";
+import { ChangeEvent, SetStateAction, useEffect, useState } from "react";
 // import ProgressBar from "./ProgressBar";
 import "./PasswordField.css";
 import "./main.css";
@@ -12,6 +12,24 @@ interface RulesProps {
 }
 
 function PasswordField({ onEndTesting }: RulesProps) {
+  const [device, setDevice] = useState<string>("");
+
+  //function to determine device
+  useEffect(() => {
+    const userAgent = navigator.userAgent;
+    const isMobile = /Mobi/.test(userAgent);
+    const isTouchDevice =
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      navigator.maxTouchPoints > 0;
+
+    if (isMobile || isTouchDevice) {
+      setDevice("touch");
+    } else {
+      setDevice("non-touch");
+    }
+  }, []);
+
   let [pw1Controller, setPw1Controller] = useState<string>("password");
   let [pw2Controller, setPw2Controller] = useState<string>("password");
 
@@ -188,9 +206,10 @@ function PasswordField({ onEndTesting }: RulesProps) {
             dc6: totalDeletionCount2,
           });
 
+          const x = { device, saved };
           //Firebase Thingy
           firebase.initializeApp(config);
-          firebase.database().ref("questionnaireData").push(saved);
+          firebase.database().ref("questionnaireData").push(x);
 
           setPw1(""); // Set pw1 to an empty string or any default value
           setPw2(""); // Set pw2 to an empty string or any default value
@@ -292,7 +311,8 @@ function PasswordField({ onEndTesting }: RulesProps) {
           </div>
           <div className="card-body">
             <p className="card-text">
-              Correct Password: &nbsp; &nbsp;"{samplePasswords[topFieldNumber+1]}"{" "}
+              Correct Password: &nbsp; &nbsp;"
+              {samplePasswords[topFieldNumber + 1]}"{" "}
             </p>
             <label htmlFor="email2" className="form-label required">
               Email
