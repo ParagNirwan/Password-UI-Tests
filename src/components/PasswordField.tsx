@@ -2,7 +2,6 @@ import { ChangeEvent, SetStateAction, useEffect, useState } from "react";
 // import ProgressBar from "./ProgressBar";
 import "./PasswordField.css";
 import "./main.css";
-import { useAppContext } from "./AppContext";
 import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 import config from "../../config";
@@ -12,6 +11,15 @@ interface RulesProps {
 }
 
 function PasswordField({ onEndTesting }: RulesProps) {
+  let saved: { [key: string]: number } = {
+    dc1: 0,
+    dc2: 0,
+    dc3: 0,
+    dc4: 0,
+    dc5: 0,
+    dc6: 0,
+  };
+
   const [device, setDevice] = useState<string>("");
 
   //function to determine device
@@ -33,21 +41,20 @@ function PasswordField({ onEndTesting }: RulesProps) {
   let [pw1Controller, setPw1Controller] = useState<string>("password");
   let [pw2Controller, setPw2Controller] = useState<string>("password");
 
-  const { saved, setSaved } = useAppContext();
   const wrongPasswords: { [key: number]: string } = {
-    1: "EasyPaasword123",
-    2: "",
-    3: "M3diumstr0ng#",
-    4: "Med!umStrong#",
-    5: "ComPlexPa$$w0rD#2024", //C0mpl3xP@$$w0rD#2024
-    6: "C0mPl3xPassw0rD#2024", //C0mpl3xP@$$w0rD#2024
+    // 1: "EasyPaasword123",
+    // 2: "",
+    // 3: "M3diumstr0ng#",
+    // 4: "Med!umStrong#",
+    // 5: "ComPlexPa$$w0rD#2024", //C0mpl3xP@$$w0rD#2024
+    // 6: "C0mPl3xPassw0rD#2024", //C0mpl3xP@$$w0rD#2024
 
-    // 1: "EasyPassword123",
-    // 2: "EasyPassword123",
-    // 3: "M3d!umStr0ng#",
-    // 4: "M3d!umStr0ng#",
-    // 5: "C0mpl3xP@$$w0rD#2024",
-    // 6: "C0mpl3xP@$$w0rD#2024",
+    1: "EasyPassword123",
+    2: "Password456Weak",
+    3: "M3d!umStr0ng#",
+    4: "M3d!umStr0ng#",
+    5: "C0mpl3xP@$$w0rD#2024",
+    6: "C0mpl3xP@$$w0rD#2024",
   };
 
   const samplePasswords: { [key: number]: string } = {
@@ -151,13 +158,10 @@ function PasswordField({ onEndTesting }: RulesProps) {
           setProgress(progress + 30);
           setTopFieldNumber(3);
           // setBottomFieldNumber(4);
-          setSaved({
-            ...saved,
-            dc1: totalDeletionCount1,
-            dc2: totalDeletionCount2,
-          });
 
-          setPw1(wrongPasswords[3]); // Update pw1 with wrongPassword[3]
+          (saved.dc1 = totalDeletionCount1),
+            (saved.dc2 = totalDeletionCount2),
+            setPw1(wrongPasswords[3]); // Update pw1 with wrongPassword[3]
           setPw2(wrongPasswords[4]); // Update pw2 with wrongPassword[4]
 
           setTotalDeletionCount1(0);
@@ -177,13 +181,9 @@ function PasswordField({ onEndTesting }: RulesProps) {
           setProgress(progress + 30);
           setTopFieldNumber(5);
           // setBottomFieldNumber(6);
-          setSaved({
-            ...saved,
-            dc3: totalDeletionCount1,
-            dc4: totalDeletionCount2,
-          });
-
-          setPw1(wrongPasswords[5]); // Update pw1 with wrongPassword[5]
+          (saved.dc3 = totalDeletionCount1),
+            (saved.dc4 = totalDeletionCount2),
+            setPw1(wrongPasswords[5]); // Update pw1 with wrongPassword[5]
           setPw2(wrongPasswords[6]); // Update pw2 with wrongPassword[6]
 
           setTotalDeletionCount1(0);
@@ -198,21 +198,19 @@ function PasswordField({ onEndTesting }: RulesProps) {
       if (pw1 === samplePasswords[5]) {
         setError1(null);
         if (pw2 == samplePasswords[6]) {
+          setTimeout(() => {}, 2000);
           setError2(null);
           onEndTesting();
-          setSaved({
-            ...saved,
-            dc5: totalDeletionCount1,
-            dc6: totalDeletionCount2,
-          });
 
+          (saved.dc5 = totalDeletionCount1),
+            (saved.dc6 = totalDeletionCount2),
+            setPw1(""); // Set pw1 to an empty string or any default value
+          setPw2(""); // Set pw2 to an empty string or any default value
+          console.log(saved);
           const x = { device, saved };
           //Firebase Thingy
           firebase.initializeApp(config);
           firebase.database().ref("questionnaireData").push(x);
-
-          setPw1(""); // Set pw1 to an empty string or any default value
-          setPw2(""); // Set pw2 to an empty string or any default value
         } else {
           setError2("Incorrect Password");
         }
