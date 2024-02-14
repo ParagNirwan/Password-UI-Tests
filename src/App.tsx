@@ -2,7 +2,6 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import PasswordField from "./components/PasswordField";
 import Rules from "./components/Instructions";
-import Footer from "./components/Footer";
 import Questionnaire from "./components/Questionnaire";
 import End from "./components/End";
 
@@ -34,7 +33,6 @@ function App() {
       {testingEnded && !finish && <Questionnaire onFinish={handleFinish} />}
       {finish && <End />}
 
-      <Footer></Footer>
       {/* <End></End> */}
     </div>
   );
