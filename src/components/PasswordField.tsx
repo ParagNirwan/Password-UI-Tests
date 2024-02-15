@@ -42,19 +42,19 @@ function PasswordField({ onEndTesting }: RulesProps) {
   let [pw2Controller, setPw2Controller] = useState<string>("password");
 
   const wrongPasswords: { [key: number]: string } = {
-    // 1: "EasyPaasword123",
-    // 2: "",
-    // 3: "M3diumstr0ng#",
-    // 4: "Med!umStrong#",
-    // 5: "ComPlexPa$$w0rD#2024", //C0mpl3xP@$$w0rD#2024
-    // 6: "C0mPl3xPassw0rD#2024", //C0mpl3xP@$$w0rD#2024
+    1: "EasyPaasword123",
+    2: "",
+    3: "M3diumstr0ng#",
+    4: "Med!umStrong#",
+    5: "ComPlexPa$$w0rD#2024", //C0mpl3xP@$$w0rD#2024
+    6: "C0mPl3xPassw0rD#2024", //C0mpl3xP@$$w0rD#2024
 
-    1: "EasyPassword123",
-    2: "Password456Weak",
-    3: "M3d!umStr0ng#",
-    4: "M3d!umStr0ng#",
-    5: "C0mpl3xP@$$w0rD#2024",
-    6: "C0mpl3xP@$$w0rD#2024",
+    // 1: "EasyPassword123",
+    // 2: "Password456Weak",
+    // 3: "M3d!umStr0ng#",
+    // 4: "M3d!umStr0ng#",
+    // 5: "C0mpl3xP@$$w0rD#2024",
+    // 6: "C0mpl3xP@$$w0rD#2024",
   };
 
   const samplePasswords: { [key: number]: string } = {
