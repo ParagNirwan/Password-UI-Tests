@@ -24,31 +24,22 @@ const Questionnaire: React.FC<QuestionnaireProps> = () => {
     //   </center>
     // </div>
     <center>
-      <div
-        className="container-fluid"
+      <iframe
+        width="640px"
+        height="10000x"
+        src="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAANAAcpRHOVUNDhXRkkwQ0hMRzJTU1EwVEhHSUpNQ1ZUUC4u&embed=true"
         style={{
           overflow: "hidden",
-          maxHeight: "1670px",
-          marginBottom: "20px",
+          border: "none",
+          maxWidth: "100%",
+          maxHeight: "1931px",
+          borderRadius: "10px",
         }}
+        allowFullScreen
+        className="box"
       >
-        <iframe
-          width="640px"
-          height="10000x"
-          src="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAANAAcpRHOVUNDhXRkkwQ0hMRzJTU1EwVEhHSUpNQ1ZUUC4u&embed=true"
-          style={{
-            overflow: "hidden",
-            border: "none",
-            maxWidth: "100%",
-            maxHeight: "1931px",
-            borderRadius: "10px",
-          }}
-          allowFullScreen
-          className="box"
-        >
-          {" "}
-        </iframe>
-      </div>
+        {" "}
+      </iframe>
     </center>
   );
 };
